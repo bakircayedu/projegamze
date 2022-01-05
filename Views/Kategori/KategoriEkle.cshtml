@@ -1,0 +1,20 @@
+﻿@model MvcKütüphane.Models.Entity.KATEGORI
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(k => k.KATEGORI_AD, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Kategori Ekle</button>
+    </div>
+</form>
+
+
+
+

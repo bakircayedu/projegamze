@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KÜTÜPHANE_YONETİM_SİSTEMİModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EMANET">
+    <Key>
+      <PropertyRef Name="EMANET_ID" />
+    </Key>
+    <Property Name="EMANET_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KITAP" Type="Int32" />
+    <Property Name="UYE" Type="Int32" />
+    <Property Name="PERSONEL" Type="Int32" />
+    <Property Name="EMANET_TARIHI" Type="DateTime" Precision="0" />
+    <Property Name="TESLIM_TARIHI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="KITAPLAR" Relationship="Self.FK_EMANET_KITAPLAR" FromRole="EMANET" ToRole="KITAPLAR" />
+    <NavigationProperty Name="UYELER" Relationship="Self.FK_EMANET_UYELER" FromRole="EMANET" ToRole="UYELER" />
+    <NavigationProperty Name="PERSONEL1" Relationship="KÜTÜPHANE_YONETİM_SİSTEMİModel.FK_EMANET_PERSONEL" FromRole="EMANET" ToRole="PERSONEL" />
+    <Property Name="ISLEMDURUM" Type="Boolean" />
+    <Property Name="UYE_TESLIM_TARIHI" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="KATEGORI">
+    <Key>
+      <PropertyRef Name="KATEGORI_ID" />
+    </Key>
+    <Property Name="KATEGORI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KATEGORI_AD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KITAPLAR" Relationship="Self.FK_KITAPLAR_KATEGORI" FromRole="KATEGORI" ToRole="KITAPLAR" />
+    <Property Name="DURUM" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="KITAPLAR">
+    <Key>
+      <PropertyRef Name="KITAP_ID" />
+    </Key>
+    <Property Name="KITAP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KITAP_ADI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="KATEGORI" Type="Int32" />
+    <Property Name="YAZAR" Type="Int32" />
+    <Property Name="S_SAYISI" Type="Int32" />
+    <Property Name="YAYINEVI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DURUM" Type="Boolean" />
+    <NavigationProperty Name="EMANET" Relationship="Self.FK_EMANET_KITAPLAR" FromRole="KITAPLAR" ToRole="EMANET" />
+    <NavigationProperty Name="KATEGORI1" Relationship="Self.FK_KITAPLAR_KATEGORI" FromRole="KITAPLAR" ToRole="KATEGORI" />
+    <NavigationProperty Name="YAZARLAR" Relationship="Self.FK_KITAPLAR_YAZARLAR" FromRole="KITAPLAR" ToRole="YAZARLAR" />
+    <Property Name="KITAPFOTO" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PERSONEL">
+    <Key>
+      <PropertyRef Name="PERSONEL_ID" />
+    </Key>
+    <Property Name="PERSONEL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PERSONEL1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMANET" Relationship="KÜTÜPHANE_YONETİM_SİSTEMİModel.FK_EMANET_PERSONEL" FromRole="PERSONEL" ToRole="EMANET" />
+    <Property Name="PERSONEL_EPOSTA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PERSONEL_SİFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UYELER">
+    <Key>
+      <PropertyRef Name="UYE_ID" />
+    </Key>
+    <Property Name="UYE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UYE_AD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UYE_SOYAD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="E_POSTA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFON" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SİFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="OKUL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMANET" Relationship="Self.FK_EMANET_UYELER" FromRole="UYELER" ToRole="EMANET" />
+  </EntityType>
+  <EntityType Name="YAZARLAR">
+    <Key>
+      <PropertyRef Name="YAZAR_ID" />
+    </Key>
+    <Property Name="YAZAR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YAZAR_ADI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="YAZAR_SOYADI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="YAZAR_DETAY" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KITAPLAR" Relationship="Self.FK_KITAPLAR_YAZARLAR" FromRole="YAZARLAR" ToRole="KITAPLAR" />
+  </EntityType>
+  <Association Name="FK_EMANET_KITAPLAR">
+    <End Role="KITAPLAR" Type="Self.KITAPLAR" Multiplicity="0..1" />
+    <End Role="EMANET" Type="Self.EMANET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAPLAR">
+        <PropertyRef Name="KITAP_ID" />
+      </Principal>
+      <Dependent Role="EMANET">
+        <PropertyRef Name="KITAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMANET_UYELER">
+    <End Role="UYELER" Type="Self.UYELER" Multiplicity="0..1" />
+    <End Role="EMANET" Type="Self.EMANET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UYELER">
+        <PropertyRef Name="UYE_ID" />
+      </Principal>
+      <Dependent Role="EMANET">
+        <PropertyRef Name="UYE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KITAPLAR_KATEGORI">
+    <End Role="KATEGORI" Type="Self.KATEGORI" Multiplicity="0..1" />
+    <End Role="KITAPLAR" Type="Self.KITAPLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KATEGORI">
+        <PropertyRef Name="KATEGORI_ID" />
+      </Principal>
+      <Dependent Role="KITAPLAR">
+        <PropertyRef Name="KATEGORI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KITAPLAR_YAZARLAR">
+    <End Role="YAZARLAR" Type="Self.YAZARLAR" Multiplicity="0..1" />
+    <End Role="KITAPLAR" Type="Self.KITAPLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YAZARLAR">
+        <PropertyRef Name="YAZAR_ID" />
+      </Principal>
+      <Dependent Role="KITAPLAR">
+        <PropertyRef Name="YAZAR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KÜTÜPHANE_YONETİM_SİSTEMİEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EMANET" EntityType="Self.EMANET" />
+    <EntitySet Name="KATEGORI" EntityType="Self.KATEGORI" />
+    <EntitySet Name="KITAPLAR" EntityType="Self.KITAPLAR" />
+    <EntitySet Name="PERSONEL" EntityType="Self.PERSONEL" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UYELER" EntityType="Self.UYELER" />
+    <EntitySet Name="YAZARLAR" EntityType="Self.YAZARLAR" />
+    <AssociationSet Name="FK_EMANET_KITAPLAR" Association="Self.FK_EMANET_KITAPLAR">
+      <End Role="KITAPLAR" EntitySet="KITAPLAR" />
+      <End Role="EMANET" EntitySet="EMANET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMANET_UYELER" Association="Self.FK_EMANET_UYELER">
+      <End Role="UYELER" EntitySet="UYELER" />
+      <End Role="EMANET" EntitySet="EMANET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KITAPLAR_KATEGORI" Association="Self.FK_KITAPLAR_KATEGORI">
+      <End Role="KATEGORI" EntitySet="KATEGORI" />
+      <End Role="KITAPLAR" EntitySet="KITAPLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KITAPLAR_YAZARLAR" Association="Self.FK_KITAPLAR_YAZARLAR">
+      <End Role="YAZARLAR" EntitySet="YAZARLAR" />
+      <End Role="KITAPLAR" EntitySet="KITAPLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMANET_PERSONEL" Association="KÜTÜPHANE_YONETİM_SİSTEMİModel.FK_EMANET_PERSONEL">
+      <End Role="PERSONEL" EntitySet="PERSONEL" />
+      <End Role="EMANET" EntitySet="EMANET" />
+    </AssociationSet>
+    <EntitySet Name="ILETISIM" EntityType="KÜTÜPHANE_YONETİM_SİSTEMİModel.ILETISIM" />
+  </EntityContainer>
+  <Association Name="FK_EMANET_PERSONEL">
+    <End Type="KÜTÜPHANE_YONETİM_SİSTEMİModel.PERSONEL" Role="PERSONEL" Multiplicity="0..1" />
+    <End Type="KÜTÜPHANE_YONETİM_SİSTEMİModel.EMANET" Role="EMANET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONEL">
+        <PropertyRef Name="PERSONEL_ID" />
+      </Principal>
+      <Dependent Role="EMANET">
+        <PropertyRef Name="PERSONEL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ILETISIM">
+    <Key>
+      <PropertyRef Name="ILETISIM_ID" />
+    </Key>
+    <Property Name="ILETISIM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ILETISIM_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ILETISIM_EMAİL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ILETISIM_TELEFON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ILETISIM_MESAJ" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

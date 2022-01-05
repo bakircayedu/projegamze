@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Giriş Yap</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates,
+		Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+    <link href="~/weblogin/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/weblogin/css/fontawesome-all.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+</head>
+
+
+<body>
+    <h1>Giriş</h1>
+    <div class=" w3l-login-form">
+        <h2>Giriş Yap</h2>
+        @using (Html.BeginForm("GirisYap", "Login", FormMethod.Post))
+        {
+            <div class=" w3l-form-group">
+                <label>Kullanıcı Adı:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" placeholder="kullanıcı adı" required="required" name="KULLANICIADI" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Şİfre:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" class="form-control" placeholder="şifre" required="required" name="SİFRE" />
+                </div>
+            </div>
+            <button type="submit">Gİrİş</button>
+        }
+        <p class=" w3l-register-p">Kaydın yok mu?<a href="/KayitOl/Kayit/" class="register">Kaydol</a></p>
+    </div>
+    <footer>
+        <p class="copyright-agileinfo"> İstanbul Büyükşehir Belediyesi Bilgi İşlem Daire Başkanlığı tarafından ❤️ ile tasarlanmıştır. <a href="https://www.ibb.istanbul/Permission/Detail/90">Bilgi İşlem Daire Başkanlığı</a></p>
+    </footer>
+</body>
+</html>

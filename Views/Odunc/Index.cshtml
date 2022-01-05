@@ -1,0 +1,36 @@
+﻿@using MvcKütüphane.Models.Entity
+@model List<EMANET>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Ödünç Kitap Listesi</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>KİTAP ADI</th>
+        <th>ÜYE</th>
+        <th>PERSONEL</th>
+        <th>EMANET TARİHİ</th>
+        <th>TESLİM TARİHİ</th>
+        <th>İADE AL</th>
+    </tr>
+    @foreach (var o in Model)
+    {
+        <tr>
+            <td>@o.EMANET_ID</td>
+            <td>@o.KITAPLAR.KITAP_ADI</td>
+            <td>@o.UYELER.UYE_AD&nbsp;@o.UYELER.UYE_SOYAD</td>
+            <td>@o.PERSONEL1.PERSONEL1</td>
+            <td>@Convert.ToDateTime(o.EMANET_TARIHI).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(o.TESLIM_TARIHI).ToString("dd/MM/yyyy")</td>
+            <td><a href="/Odunc/Odunciade/@o.EMANET_ID" class="btn btn-group" style="background-color:cadetblue; color:black">Kitap İade</a></td>
+
+
+        </tr>
+    }
+</table>
+
+

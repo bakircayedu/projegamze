@@ -1,0 +1,44 @@
+﻿@model MvcKütüphane.Models.Entity.KITAPLAR
+@{
+    ViewBag.Title = "KitapGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("KitapGüncelle", "Kitap", FormMethod.Post))
+{
+    <div style="margin-bottom:15px"></div>
+    <div class="form-group">
+        <div style="margin-bottom:15px">
+            <label>Kitap ID</label>
+            @Html.TextBoxFor(k => k.KITAP_ID, new { @class = "form-control" })
+        </div>
+        <div style="margin-bottom:15px">
+            <label>Kitap Adı</label>
+            @Html.TextBoxFor(k => k.KITAP_ADI, new { @class = "form-control" })
+        </div>
+        <div style="margin-bottom:15px">
+            <label>Kitap Yazarı</label>
+            @Html.DropDownListFor(k => k.YAZARLAR.YAZAR_ID, (List<SelectListItem>)ViewBag.dgr2,
+       new { @class = "form-control" })
+        </div>
+        <div style="margin-bottom:15px">
+            <label>Kitap Kategori</label>
+            @Html.DropDownListFor(k => k.KATEGORI1.KATEGORI_ID, (List<SelectListItem>)ViewBag.dgr1,
+        new { @class = "form-control" })
+        </div>
+        <div style="margin-bottom:15px">
+            <label>Kitap Sayfa Sayısı</label>
+            @Html.TextBoxFor(k => k.S_SAYISI, new { @class = "form-control" })
+        </div>
+        <div style="margin-bottom:15px">
+            <label>Kitap Yayınevi</label>
+            @Html.TextBoxFor(k => k.YAYINEVI, new { @class = "form-control" })
+        </div>
+
+
+        <button class="btn btn-warning">Kitap Bİlgilerini Güncelle</button>
+        <input type="hidden" name="Durum" value="True" />
+        
+    </div>
+}
